@@ -1,6 +1,14 @@
 // src/lib/discord-notifier.ts
 
-export async function sendDiscordAlert(leadData: any) {
+export interface LeadData {
+  nombre: string;
+  email: string;
+  servicio?: string;
+  presupuesto?: number | string;
+  [key: string]: any;
+}
+
+export async function sendDiscordAlert(leadData: LeadData) {
   const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
   
   if (!webhookUrl) {

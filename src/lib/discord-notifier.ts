@@ -1,10 +1,15 @@
 // src/lib/discord-notifier.ts
 
 export interface LeadData {
-  nombre: string;
+  name?: string;
+  nombre?: string;
   email: string;
+  projectType?: string;
   servicio?: string;
+  budgetMin?: number | string;
+  budgetMax?: number | string;
   presupuesto?: number | string;
+  wantsMaintenance?: boolean;
   [key: string]: any;
 }
 
@@ -16,16 +21,26 @@ export async function sendDiscordAlert(leadData: LeadData) {
     return;
   }
 
+  const cliente = leadData.name || leadData.nombre || "No especificado";
+  const proyecto = leadData.projectType || leadData.servicio || "No especificado";
+  const presupuesto =
+    leadData.budgetMin !== undefined && leadData.budgetMax !== undefined
+      ? `$${leadData.budgetMin} - $${leadData.budgetMax} MXN`
+      : leadData.presupuesto
+      ? `$${leadData.presupuesto} MXN`
+      : "No especificado";
+
   const message = {
     embeds: [
       {
         title: "🚨 ¡NUEVO LEAD PREMIUM!",
         color: 3066993, // Verde esmeralda
         fields: [
-          { name: "Nombre", value: leadData.nombre || "No especificado", inline: true },
+          { name: "Nombre", value: cliente, inline: true },
           { name: "Email", value: leadData.email || "No especificado", inline: true },
-          { name: "Servicio", value: leadData.servicio || "No especificado", inline: true },
-          { name: "Presupuesto Estimado", value: `$${leadData.presupuesto} MXN`, inline: false },
+          { name: "Proyecto", value: proyecto, inline: true },
+          { name: "Presupuesto Estimado", value: presupuesto, inline: true },
+          { name: "Mantenimiento", value: leadData.wantsMaintenance ? "Sí" : "No", inline: true },
         ],
         timestamp: new Date().toISOString(),
       }

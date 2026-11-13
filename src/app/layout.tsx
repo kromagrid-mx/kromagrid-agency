@@ -17,14 +17,14 @@ const spaceGrotesk = Space_Grotesk({
 
 // 2. SEO y Metadatos (Esto hace que vendas antes de que abran la página)
 export const metadata: Metadata = {
-  title: 'DevStudio | Desarrollo Web a Medida para Negocios', // Cambia "DevStudio" por su nombre
+  title: 'KromaGrid | Desarrollo Web a Medida para Negocios',
   description: 'Soluciones digitales de alto nivel, desarrolladas por talento emergente. Código fresco, diseño a medida y automatización de ventas sin costos corporativos.',
   keywords: ['desarrollo web', 'agencia web méxico', 'landing pages', 'tiendas en línea', 'diseño web pymes', 'creación de páginas web'],
   openGraph: {
-    title: 'DevStudio | Talento Emergente en Código y Diseño',
+    title: 'KromaGrid | Talento Emergente en Código y Diseño',
     description: 'No pagues oficinas de agencia grande. Invierte 100% en tu producto digital.',
-    url: 'https://tuagencia.com', // Tu dominio final
-    siteName: 'DevStudio',
+    url: 'https://kromagrid.netlify.app',
+    siteName: 'KromaGrid',
     locale: 'es_MX',
     type: 'website',
   },

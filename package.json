@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.5",
+    "framer-motion": "^14.14.0",
+    "lucide-react": "^1.72.0",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "resend": "latest"
+    "resend": "^6.38.1"
   },
   "devDependencies": {
     "@types/node": "latest",

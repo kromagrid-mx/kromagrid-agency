@@ -44,27 +44,38 @@ export default function DynamicCalculator() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/webhook-lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          email,
-          projectType: `${selectedType.title} + ${selectedDesign.title}`,
-          budgetMin: minPrice,
-          budgetMax: maxPrice,
-          wantsMaintenance
-        }),
-      });
+      const WHATSAPP_NUMBER = "525520138173";
 
-      if (response.ok) {
-        setIsSuccess(true);
-      } else {
-        alert("Hubo un error, por favor intenta de nuevo.");
+      const message = `¡Hola KromaGrid! Vengo de su página web y quiero cotizar un proyecto. 🚀
+
+*Mis Datos:*
+👤 Nombre: ${name}
+✉️ Correo: ${email}
+
+*Detalles del Proyecto:*
+🛠️ Tipo: ${selectedType.title}
+✨ Diseño: ${selectedDesign.title}
+🛡️ Mantenimiento: ${wantsMaintenance ? 'Sí (+ $600 MXN/mes)' : 'No'}
+
+*Inversión estimada por la calculadora:*
+💰 ${formatMoney(minPrice)} a ${formatMoney(maxPrice)} MXN
+
+Me gustaría afinar los detalles, ¿podemos platicar?`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+      // Intentamos abrir en una nueva pestaña
+      const newWindow = window.open(whatsappUrl, '_blank');
+      
+      // Si el navegador bloqueó la ventana emergente, lo forzamos en la misma pestaña
+      if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+        window.location.href = whatsappUrl;
       }
+
+      setIsSuccess(true);
     } catch (error) {
       console.error(error);
-      alert("Error de conexión.");
     } finally {
       setIsSubmitting(false);
     }

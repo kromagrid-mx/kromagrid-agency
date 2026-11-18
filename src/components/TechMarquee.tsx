@@ -1,45 +1,53 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 
-// Cambiamos el enfoque a soluciones de software y arquitectura B2B
-const TECH_VALUES = [
-  "ARQUITECTURA CLOUD", "AUTOMATIZACIÓN B2B", "SISTEMAS A LA MEDIDA", 
-  "ESCALABILIDAD", "ALTO RENDIMIENTO", "SEGURIDAD DE DATOS", 
-  "INTEGRACIONES API", "TRANSFORMACIÓN DIGITAL"
+const LUXURY_CAPABILITIES = [
+  'INGENIERÍA A LA MEDIDA',
+  'ARQUITECTURA ESCALABLE',
+  'DISEÑO DE AUTOR',
+  'ECOSISTEMAS DIGITALES',
+  'AUTOMATIZACIÓN EMPRESARIAL',
+  'COMERCIO DE ALTO NIVEL',
+  'EXPERIENCIA INMERSIVA',
+  'RENDIMIENTO ABSOLUTO',
 ];
 
 export default function TechMarquee() {
   return (
-    <section className="relative w-full py-8 bg-zinc-50 dark:bg-zinc-950 border-y border-zinc-200 dark:border-zinc-800/50 overflow-hidden flex items-center z-10 transition-colors duration-500">
+    <section className="relative w-full py-12 bg-kg-silk/50 dark:bg-kg-onyx/50 border-y border-kg-ink/5 dark:border-kg-alabaster/5 overflow-hidden flex items-center z-10 transition-colors duration-700 group">
       
-      {/* Sombras en los bordes que se adaptan al modo claro/oscuro (tonos zinc) */}
-      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-zinc-50 dark:from-zinc-950 to-transparent z-20 pointer-events-none transition-colors duration-500" />
-      <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-zinc-50 dark:from-zinc-950 to-transparent z-20 pointer-events-none transition-colors duration-500" />
+      {/* Desvanecimiento lateral cinematográfico */}
+      <div className="absolute left-0 top-0 bottom-0 w-24 md:w-44 bg-gradient-to-r from-kg-alabaster dark:from-kg-obsidian to-transparent z-20 pointer-events-none transition-colors duration-700" />
+      <div className="absolute right-0 top-0 bottom-0 w-24 md:w-44 bg-gradient-to-l from-kg-alabaster dark:from-kg-obsidian to-transparent z-20 pointer-events-none transition-colors duration-700" />
 
-      {/* Pista de movimiento */}
-      <div className="flex w-max animate-marquee space-x-16 px-8">
-        {/* Duplicamos el arreglo 3 veces para un ciclo infinito fluido */}
-        {[...TECH_VALUES, ...TECH_VALUES, ...TECH_VALUES].map((value, index) => (
+      {/* Pista de movimiento infinito con pausa al hacer hover */}
+      <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused] space-x-16 px-8">
+        {[...LUXURY_CAPABILITIES, ...LUXURY_CAPABILITIES, ...LUXURY_CAPABILITIES].map((value, index) => (
           <div key={index} className="flex items-center space-x-16">
-            <span className="text-[11px] md:text-xs font-bold tracking-[0.3em] uppercase text-zinc-500 dark:text-zinc-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-default font-sans">
+            <motion.span
+              whileHover={{ y: -2 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[11px] md:text-xs font-medium tracking-[0.32em] uppercase text-kg-ink/45 dark:text-kg-alabaster/45 hover:text-kg-champagne dark:hover:text-kg-champagne transition-colors duration-500 cursor-default"
+            >
               {value}
-            </span>
-            {/* Separador técnico (tipo código) */}
-            <span className="text-blue-500/40 text-sm font-mono font-bold">//</span>
+            </motion.span>
+            
+            {/* Emblema romboidal en dorado champán */}
+            <span className="w-1.5 h-1.5 rotate-45 border border-kg-champagne/60 bg-kg-champagne/20 inline-block" />
           </div>
         ))}
       </div>
 
-      {/* Inyección de la animación */}
+      {/* Animación fluida de desplazamiento */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes marquee {
           0% { transform: translateX(0%); }
           100% { transform: translateX(-33.333%); }
         }
         .animate-marquee {
-          /* Velocidad fluida y constante para un entorno tech */
-          animation: marquee 30s linear infinite;
+          animation: marquee 42s linear infinite;
         }
       `}} />
     </section>

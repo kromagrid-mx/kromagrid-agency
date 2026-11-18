@@ -2,135 +2,182 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, MonitorPlay } from 'lucide-react';
+import { ArrowUpRight, Layers } from 'lucide-react';
 
 const PROJECTS = [
   {
-    id: 1,
-    title: 'NexLogistics B2B',
-    category: 'Plataforma SaaS & Tracking',
-    tech: ['Next.js', 'Arquitectura Cloud', 'Dashboard UI'],
+    id: '01',
+    title: 'NexLogistics Enterprise',
+    category: 'Plataforma SaaS & Automatización',
+    tech: ['Software a la Medida', 'Arquitectura Cloud', 'Analítica en Tiempo Real'],
     link: 'https://mprz18.github.io/APEX-STUDIO/',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop', // Imagen de un dashboard moderno
-    size: 'md:col-span-2', // Ocupa dos columnas
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1400&auto=format&fit=crop',
+    size: 'md:col-span-2',
   },
   {
-    id: 2,
-    title: 'Aura Commerce',
-    category: 'E-Commerce Escalable',
-    tech: ['Pagos Stripe', 'Optimización CR', 'API'],
+    id: '02',
+    title: 'Maison Aura',
+    category: 'E-Commerce & Catálogo Interactivo',
+    tech: ['Pasarela de Pagos', 'Experiencia UI/UX', 'Alta Conversión'],
     link: 'https://mprz18.github.io/Borrador-Optica/',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop', // Imagen de analíticas de ventas
-    size: 'md:col-span-1', // Ocupa una columna
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop',
+    size: 'md:col-span-1',
   },
   {
-    id: 3,
-    title: 'Fintech Nova',
-    category: 'Sitio Corporativo Institucional',
-    tech: ['Seguridad', 'Alto Rendimiento', 'UI/UX'],
+    id: '03',
+    title: 'Apex & Asociados',
+    category: 'Ecosistema Corporativo & Reservas',
+    tech: ['Ingeniería Web', 'Posicionamiento de Marca', 'Rendimiento Óptimo'],
     link: 'https://mprz18.github.io/clinica-dental-sonrisa/',
-    image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=800&auto=format&fit=crop', // Imagen de tech/finanzas
-    size: 'md:col-span-3', // Ocupa todo el ancho en formato banner
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop',
+    size: 'md:col-span-3',
   },
 ];
 
+const headerStagger = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const headerItem = {
+  hidden: { opacity: 0, y: 28, filter: 'blur(6px)' },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 export default function PortfolioGrid() {
   return (
-    <section id="portafolio" className="w-full max-w-7xl mx-auto py-32 px-6 relative z-10 bg-zinc-50 dark:bg-zinc-950 transition-colors duration-500">
-      
-      {/* Cabecera Tech / Corporativa */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-        <div className="max-w-3xl">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 mb-6 backdrop-blur-md shadow-sm"
+    <section
+      id="portafolio"
+      className="w-full py-32 px-6 relative z-10 bg-kg-alabaster dark:bg-kg-obsidian transition-colors duration-700"
+    >
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Cabecera Editorial */}
+        <motion.div
+          variants={headerStagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-80px' }}
+          className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 gap-8"
+        >
+          <div className="max-w-2xl">
+            <motion.div
+              variants={headerItem}
+              className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-kg-champagne/30 bg-kg-silk/70 dark:bg-kg-onyx/70 mb-6 backdrop-blur-md"
+            >
+              <Layers className="w-3.5 h-3.5 text-kg-champagne" />
+              <span className="text-[10px] font-medium tracking-[0.28em] text-kg-ink dark:text-kg-alabaster uppercase">
+                Colección Selecta
+              </span>
+            </motion.div>
+
+            <motion.h2
+              variants={headerItem}
+              className="text-4xl sm:text-5xl md:text-6xl font-serif text-kg-ink dark:text-kg-alabaster tracking-tight leading-[1.08]"
+            >
+              Ingeniería que proyecta{' '}
+              <span className="italic text-kg-champagne font-normal">
+                autoridad.
+              </span>
+            </motion.h2>
+          </div>
+
+          <motion.p
+            variants={headerItem}
+            className="text-kg-muted text-base md:text-lg font-light max-w-md leading-relaxed"
           >
-            <MonitorPlay className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-            <span className="text-xs font-bold tracking-[0.15em] text-zinc-800 dark:text-zinc-200 uppercase">
-              Casos de Éxito
-            </span>
-          </motion.div>
-          
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-white mb-6 leading-tight"
-          >
-            Ingeniería que genera <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">resultados reales.</span>
-          </motion.h2>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-zinc-600 dark:text-zinc-400 text-lg"
-          >
-            Explora plataformas corporativas, sistemas a la medida y ecosistemas de e-commerce diseñados con arquitectura escalable y un enfoque absoluto en conversión B2B.
+            Desde plataformas SaaS y tiendas en línea hasta portales corporativos. Cada desarrollo está diseñado para seducir visualmente y multiplicar resultados.
           </motion.p>
-        </div>
-      </div>
+        </motion.div>
 
-      {/* Grid Asimétrico (Estilo Dashboard UI) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[400px]">
-        {PROJECTS.map((project, index) => (
-          <motion.a 
-            key={project.id} 
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.15 }}
-            className={`group relative overflow-hidden rounded-2xl bg-zinc-900 block border border-zinc-800 hover:border-blue-500/50 transition-all duration-500 shadow-xl ${project.size}`}
-          >
-            {/* Imagen con zoom moderno */}
-            <img 
-              src={project.image} 
-              alt={project.title}
-              className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-30 group-hover:scale-105 transition-all duration-[1s] ease-out mix-blend-overlay"
-            />
-            
-            {/* Overlay técnico para legibilidad */}
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/60 to-transparent opacity-90 transition-opacity duration-500 z-10" />
+        {/* Cuadrícula Asimétrica de Exhibición */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[440px]">
+          {PROJECTS.map((project, index) => (
+            <motion.a
+              key={project.id}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 45 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{
+                duration: 1.1,
+                delay: index * 0.15,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className={`group relative overflow-hidden bg-kg-obsidian border border-kg-ink/10 dark:border-kg-alabaster/10 hover:border-kg-champagne/60 shadow-editorial dark:shadow-editorial-dark hover:shadow-gold-glow transition-all duration-700 block ${project.size}`}
+            >
+              {/* Imagen con zoom cinematográfico continuo al pasar el cursor */}
+              <img
+                src={project.image}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover opacity-65 group-hover:opacity-40 group-hover:scale-105 transition-all duration-[1.6s] ease-[0.16,1,0.3,1]"
+              />
 
-            {/* Contenido interactivo */}
-            <div className="absolute inset-0 p-8 flex flex-col justify-end z-20">
-              
-              <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                {/* Etiquetas Tech (Stack Tecnológico) */}
-                <div className="flex flex-wrap gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                  {project.tech.map((t, idx) => (
-                    <span key={idx} className="text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-md bg-zinc-800/80 border border-zinc-700 text-cyan-400 backdrop-blur-sm">
-                      {t}
-                    </span>
-                  ))}
-                </div>
+              {/* Degradado arquitectónico para máxima legibilidad */}
+              <div className="absolute inset-0 bg-gradient-to-t from-kg-obsidian via-kg-obsidian/45 to-transparent opacity-95 transition-opacity duration-700 z-10" />
 
-                <p className="text-blue-400 text-xs font-bold mb-2 uppercase tracking-widest">{project.category}</p>
-                
-                <div className="flex items-center justify-between">
-                  <h3 className="text-2xl font-extrabold tracking-tight text-white transition-colors">{project.title}</h3>
+              {/* Índice Editorial Superior */}
+              <div className="absolute top-8 left-8 right-8 flex items-center justify-between z-20">
+                <span className="font-serif italic text-xl text-kg-champagne/80 group-hover:text-kg-champagne transition-colors duration-500">
+                  {project.id}.
+                </span>
+                <span className="text-[9px] uppercase tracking-[0.25em] text-kg-alabaster/60 border border-kg-alabaster/15 px-3 py-1 backdrop-blur-md">
+                  Caso de Estudio
+                </span>
+              </div>
+
+              {/* Contenido Inferior con Elevación Fluida */}
+              <div className="absolute inset-0 p-8 sm:p-10 flex flex-col justify-end z-20">
+                <div className="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-[0.16,1,0.3,1]">
                   
-                  {/* Botón Flotante Tech */}
-                  <div className="w-10 h-10 rounded-full bg-blue-600/20 border border-blue-500/50 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-blue-600 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0 shadow-[0_0_15px_rgba(37,99,235,0.5)]">
-                    <ArrowUpRight className="w-5 h-5 text-white" />
+                  {/* Etiquetas de Capacidades */}
+                  <div className="flex flex-wrap gap-2 mb-5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-75">
+                    {project.tech.map((item, idx) => (
+                      <span
+                        key={idx}
+                        className="text-[9px] uppercase tracking-[0.2em] font-medium px-3 py-1 border border-kg-champagne/30 bg-kg-obsidian/60 text-kg-alabaster/90 backdrop-blur-md"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+
+                  <p className="text-kg-champagne text-xs font-medium mb-2.5 uppercase tracking-[0.22em]">
+                    {project.category}
+                  </p>
+
+                  <div className="flex items-end justify-between gap-4">
+                    <h3 className="text-2xl sm:text-3xl font-serif text-kg-alabaster tracking-tight">
+                      {project.title}
+                    </h3>
+
+                    {/* Botón Circular Magnético */}
+                    <div className="w-12 h-12 shrink-0 rounded-full border border-kg-champagne/40 bg-kg-obsidian/50 backdrop-blur-sm flex items-center justify-center group-hover:bg-kg-champagne group-hover:border-kg-champagne transition-all duration-500 transform group-hover:scale-110">
+                      <ArrowUpRight
+                        strokeWidth={1.5}
+                        className="w-5 h-5 text-kg-champagne group-hover:text-kg-obsidian group-hover:rotate-45 transition-all duration-500"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            {/* Resplandor exterior al hacer hover (Glow effect) */}
-            <div className="absolute inset-0 rounded-2xl shadow-[inset_0_0_0_1px_rgba(59,130,246,0)] group-hover:shadow-[inset_0_0_0_1px_rgba(59,130,246,0.5)] transition-all duration-500 z-30 pointer-events-none" />
-          </motion.a>
-        ))}
+
+              {/* Marco interior luminoso al hacer hover */}
+              <div className="absolute inset-0 border border-kg-champagne/0 group-hover:border-kg-champagne/30 transition-colors duration-700 z-30 pointer-events-none" />
+            </motion.a>
+          ))}
+        </div>
       </div>
-      
     </section>
   );
 }

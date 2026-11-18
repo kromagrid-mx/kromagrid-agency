@@ -1,12 +1,53 @@
 @import "tailwindcss";
 
+/* Habilita el modo oscuro controlado por la clase .dark en <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
+  /* Tipografías Editorial & Sans */
   --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+
+  /* Paleta Quiet Luxury */
+  --color-kg-alabaster: #FBF9F5;
+  --color-kg-silk: #F2EFE9;
+  --color-kg-obsidian: #0B0C0E;
+  --color-kg-onyx: #141619;
+  --color-kg-champagne: #C5A059;
+  --color-kg-champagneLight: #DFC58E;
+  --color-kg-ink: #18181B;
+  --color-kg-muted: #71717A;
+
+  /* Sombras de Estudio y Resplandores */
+  --shadow-editorial: 0 20px 50px -15px rgba(0, 0, 0, 0.05);
+  --shadow-editorial-dark: 0 20px 50px -15px rgba(0, 0, 0, 0.5);
+  --shadow-gold-glow: 0 0 40px -10px rgba(197, 160, 89, 0.35);
+
+  /* Gradientes Ambientales */
+  --background-image-luxury-gradient: radial-gradient(circle at 50% 0%, rgba(197, 160, 89, 0.12) 0%, transparent 70%);
+  --background-image-glass-light: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+  --background-image-glass-dark: linear-gradient(135deg, rgba(20, 22, 25, 0.7), rgba(11, 12, 14, 0.4));
 }
 
-/* Configuraciones base opcionales para suavizar la renderización de fuentes */
 html {
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Barra de desplazamiento minimalista en dorado champán */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 160, 89, 0.35);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 160, 89, 0.7);
 }

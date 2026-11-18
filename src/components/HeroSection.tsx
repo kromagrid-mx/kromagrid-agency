@@ -1,96 +1,173 @@
 'use client';
 
-import { ArrowRight, Code2, Cpu, Rocket } from 'lucide-react';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.16,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const revealItem = {
+  hidden: { opacity: 0, y: 35, filter: 'blur(8px)' },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 1.1,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
 
 export default function HeroSection() {
+  const containerRef = useRef<HTMLElement>(null);
+
+  // Efecto Parallax vinculado al scroll
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const yContent = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  const opacityContent = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const scaleOrb = useTransform(scrollYProgress, [0, 1], [1, 1.35]);
+
   return (
-    <section className="relative w-full min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden bg-zinc-50 dark:bg-zinc-950">
-      
-      {/* Fondo dinámico elegante */}
-      <div className="absolute inset-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-200 via-zinc-50 to-zinc-50 dark:from-zinc-900 dark:via-zinc-950 dark:to-zinc-950 -z-10" />
-      
-      <div className="relative z-10 flex flex-col items-center text-center max-w-5xl mx-auto mt-16">
-        
-        {/* Etiqueta de Autoridad Tecnológica */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 mb-8 backdrop-blur-md shadow-sm"
+    <section
+      ref={containerRef}
+      className="relative w-full min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden bg-kg-alabaster dark:bg-kg-obsidian transition-colors duration-700"
+    >
+      {/* Iluminación de estudio con movimiento orgánico */}
+      <motion.div
+        style={{ scale: scaleOrb }}
+        animate={{
+          opacity: [0.4, 0.75, 0.4],
+          rotate: [0, 15, 0],
+        }}
+        transition={{
+          duration: 14,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        className="absolute top-[-15%] left-1/2 -translate-x-1/2 w-[90vw] max-w-[1100px] h-[55vh] bg-kg-champagne/15 dark:bg-kg-champagne/10 rounded-full blur-[140px] pointer-events-none"
+      />
+
+      {/* Líneas arquitectónicas sutiles de fondo */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(197,160,89,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(197,160,89,0.04)_1px,transparent_1px)] bg-[size:6rem_6rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none" />
+
+      {/* Contenedor Principal con Parallax */}
+      <motion.div
+        style={{ y: yContent, opacity: opacityContent }}
+        variants={staggerContainer}
+        initial="hidden"
+        animate="show"
+        className="relative z-10 flex flex-col items-center text-center max-w-5xl mx-auto pt-24 pb-12"
+      >
+        {/* Etiqueta de Posicionamiento */}
+        <motion.div
+          variants={revealItem}
+          className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full border border-kg-champagne/30 bg-kg-silk/70 dark:bg-kg-onyx/70 mb-10 backdrop-blur-md shadow-editorial dark:shadow-editorial-dark"
         >
-          <Code2 className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-          <span className="text-xs font-semibold tracking-[0.15em] text-zinc-800 dark:text-zinc-200 uppercase">
-            Ingeniería Digital & Desarrollo a la Medida
+          <Sparkles className="w-3.5 h-3.5 text-kg-champagne" />
+          <span className="text-[10px] font-medium tracking-[0.28em] text-kg-ink dark:text-kg-alabaster uppercase">
+            Ingeniería Digital & Software a la Medida
           </span>
         </motion.div>
 
-        {/* Título Principal - Copy Persuasivo */}
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="text-5xl md:text-7xl font-extrabold tracking-tight text-zinc-900 dark:text-white mb-8 leading-[1.1]"
+        {/* Título Principal */}
+        <motion.h1
+          variants={revealItem}
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-serif text-kg-ink dark:text-kg-alabaster mb-8 leading-[1.06] tracking-tight"
         >
-          Tecnología diseñada para <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">
-            escalar tu negocio.
+          Software con la precisión <br className="hidden md:block" />
+          de la{' '}
+          <span className="italic text-kg-champagne font-normal">
+            alta costura.
           </span>
         </motion.h1>
 
-        {/* Subtítulo - Ampliación de Servicios */}
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-          className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 mb-12 max-w-3xl leading-relaxed"
+        {/* Subtítulo Persuasivo */}
+        <motion.p
+          variants={revealItem}
+          className="text-base sm:text-lg md:text-xl text-kg-muted mb-14 max-w-2xl leading-relaxed font-light"
         >
-          No solo hacemos páginas web. Desarrollamos plataformas interactivas, sistemas a la medida y ecosistemas digitales de alto rendimiento que automatizan procesos y multiplican tus ventas.
+          No construimos simples páginas web. Diseñamos plataformas escalables, tiendas en línea y sistemas a la medida que elevan el estatus de tu marca y automatizan tu crecimiento.
         </motion.p>
 
-        {/* Botones de Acción (CTAs) Orientados a Conversión */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+        {/* Botones de Acción con Efecto Cortina Dorada */}
+        <motion.div
+          variants={revealItem}
+          className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto"
         >
-          <Link 
+          <Link
             href="#cotizador"
-            className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 text-sm font-bold tracking-wide rounded-lg transition-all duration-300 hover:shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:-translate-y-1"
+            className="group relative overflow-hidden inline-flex items-center justify-center gap-4 px-10 py-5 bg-kg-ink text-kg-alabaster dark:bg-kg-alabaster dark:text-kg-obsidian text-xs font-medium tracking-[0.22em] uppercase transition-all duration-500 hover:shadow-gold-glow"
           >
-            <Rocket className="w-4 h-4" />
-            Cotizar mi Proyecto
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <span className="relative z-10 flex items-center gap-3 transition-colors duration-500 group-hover:text-white dark:group-hover:text-kg-obsidian">
+              Proyectar Inversión
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500" />
+            </span>
+            <div className="absolute inset-0 h-full w-0 bg-kg-champagne transition-all duration-500 ease-[0.16,1,0.3,1] group-hover:w-full z-0" />
           </Link>
-          
-          <Link 
+
+          <Link
             href="#portafolio"
-            className="inline-flex items-center justify-center px-8 py-4 border-2 border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white text-sm font-bold tracking-wide rounded-lg hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300"
+            className="inline-flex items-center justify-center px-10 py-5 border border-kg-ink/15 dark:border-kg-alabaster/15 bg-kg-silk/40 dark:bg-kg-onyx/40 backdrop-blur-sm text-kg-ink dark:text-kg-alabaster text-xs font-medium tracking-[0.22em] uppercase hover:border-kg-champagne hover:text-kg-champagne dark:hover:border-kg-champagne dark:hover:text-kg-champagne transition-all duration-500"
           >
-            <Cpu className="w-4 h-4 mr-2" />
-            Explorar Soluciones
+            Explorar Colección
           </Link>
         </motion.div>
-        
-        {/* Social Proof Rápido */}
+
+        {/* Pilares de Autoridad */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-col items-center gap-4 w-full max-w-2xl"
+          variants={revealItem}
+          className="mt-20 pt-8 border-t border-kg-ink/10 dark:border-kg-alabaster/10 flex flex-col items-center gap-4 w-full max-w-2xl"
         >
-          <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Diseñado para la excelencia</p>
-          <div className="flex gap-8 text-zinc-400 dark:text-zinc-600">
-            <span className="font-medium">Alto Rendimiento</span>
-            <span className="font-medium">•</span>
-            <span className="font-medium">UX Persuasivo</span>
-            <span className="font-medium">•</span>
-            <span className="font-medium">Código Escalable</span>
+          <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-kg-muted/80">
+            Estándar de Excelencia
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-10 text-xs tracking-[0.15em] uppercase text-kg-ink/60 dark:text-kg-alabaster/60 font-light">
+            <span>Arquitectura Escalable</span>
+            <span className="text-kg-champagne text-sm font-serif">✧</span>
+            <span>Diseño Persuasivo</span>
+            <span className="text-kg-champagne text-sm font-serif">✧</span>
+            <span>Alto Rendimiento</span>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
+
+      {/* Indicador de Scroll Animado en la parte inferior */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
+      >
+        <span className="text-[9px] uppercase tracking-[0.3em] text-kg-muted">
+          Desliza
+        </span>
+        <div className="w-[1px] h-10 bg-kg-ink/10 dark:bg-kg-alabaster/10 overflow-hidden">
+          <motion.div
+            animate={{ y: [-40, 40] }}
+            transition={{
+              duration: 1.8,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            className="w-full h-1/2 bg-kg-champagne"
+          />
+        </div>
+      </motion.div>
     </section>
   );
 }

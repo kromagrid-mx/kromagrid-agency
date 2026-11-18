@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { Playfair_Display, Montserrat } from 'next/font/google';
+import Navbar from '@/components/Navbar';
 import './globals.css';
 
-// 1. Fuentes Premium: Playfair para títulos (Elegancia) y Montserrat para lectura (Limpieza)
+// Fuentes de Alta Costura: Playfair Display para títulos y Montserrat para lectura limpia
 const playfair = Playfair_Display({ 
   subsets: ['latin'], 
   variable: '--font-playfair',
@@ -15,14 +16,20 @@ const montserrat = Montserrat({
   display: 'swap',
 });
 
-// 2. SEO y Metadatos enfocados en el nicho High-Ticket
+// SEO y Metadatos alineados con nuestra boutique de ingeniería digital
 export const metadata: Metadata = {
-  title: 'KromaGrid | Presencia Digital para Especialistas Premium',
-  description: 'Elevamos tu práctica clínica a la categoría premium. Diseño web a medida, elegante y optimizado para captar pacientes de alto valor.',
-  keywords: ['diseño web clínicas', 'agencia web premium', 'marketing médico', 'sitios web elegantes', 'desarrollo web lujo'],
+  title: 'KromaGrid | Ingeniería Digital & Software a la Medida',
+  description: 'Diseñamos plataformas escalables, comercio electrónico y software a la medida con la precisión de la alta costura.',
+  keywords: [
+    'desarrollo de software a la medida',
+    'agencia digital premium',
+    'diseño web de lujo',
+    'plataformas escalables',
+    'comercio electrónico empresarial',
+  ],
   openGraph: {
-    title: 'KromaGrid | Presencia Digital de Alto Valor',
-    description: 'Atrae a los pacientes correctos con una imagen digital que refleje tu prestigio.',
+    title: 'KromaGrid | Ingeniería Digital & Diseño de Autor',
+    description: 'Elevamos el estatus digital de tu empresa con plataformas escalables y experiencias web inolvidables.',
     url: 'https://kromagrid.netlify.app',
     siteName: 'KromaGrid',
     locale: 'es_MX',
@@ -31,7 +38,7 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-  }
+  },
 };
 
 export default function RootLayout({
@@ -40,20 +47,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    // 'dark' class can be toggled later. We set smooth scrolling and base theme.
     <html lang="es" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`
           ${playfair.variable} ${montserrat.variable} font-sans 
-          bg-kg-cream text-kg-charcoal dark:bg-kg-charcoal dark:text-kg-cream
-          antialiased transition-colors duration-500
-          selection:bg-kg-gold/30 selection:text-kg-charcoal dark:selection:text-kg-cream
+          bg-kg-alabaster text-kg-ink dark:bg-kg-obsidian dark:text-kg-alabaster
+          antialiased transition-colors duration-700
+          selection:bg-kg-champagne/30 selection:text-kg-ink dark:selection:text-kg-alabaster
           min-h-screen flex flex-col relative
         `}
       >
-        {/* Textura sutil estilo papel/ruido para romper la solidez del color */}
-        <div className="fixed inset-0 -z-10 h-full w-full opacity-[0.03] dark:opacity-[0.02] bg-[url('/noise.png')] pointer-events-none"></div>
+        {/* Textura táctil sutil estilo papel de algodón */}
+        <div className="fixed inset-0 -z-10 h-full w-full opacity-[0.03] dark:opacity-[0.025] bg-[url('/noise.png')] pointer-events-none" />
         
+        {/* Navegación Editorial Flotante */}
+        <Navbar />
+
         <main className="flex-grow">
           {children}
         </main>

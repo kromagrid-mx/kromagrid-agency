@@ -4,39 +4,32 @@ import PortfolioGrid from '@/components/PortfolioGrid';
 import DynamicCalculator from '@/components/DynamicCalculator';
 import CalendarEmbed from '@/components/CalendarEmbed';
 
+// Metadata optimizada para el nicho premium (fuera lo barato, hola exclusividad)
 export const metadata = {
-  title: 'KromaGrid | Talento Emergente en Código y Diseño',
-  description: 'Agencia de desarrollo web y diseño. Creamos páginas de ventas, sitios corporativos y tiendas en línea diseñadas para escalar.',
+  title: 'KromaGrid | Presencia Digital para Especialistas',
+  description: 'Agencia de diseño web premium. Elevamos la percepción de tu clínica o consultorio para atraer pacientes de alto valor.',
   openGraph: {
-    title: 'KromaGrid | Talento Emergente en Código y Diseño',
-    description: 'Agencia de desarrollo web y diseño. Creamos páginas de ventas, sitios corporativos y tiendas en línea.',
+    title: 'KromaGrid | Presencia Digital de Alto Valor',
+    description: 'Atrae a los pacientes correctos con una imagen digital que refleje tu prestigio.',
     url: 'https://kromagrid.netlify.app',
     siteName: 'KromaGrid',
     images: [
       {
-        url: '/link-preview.png', // Guarda tu imagen de 1200x630 en la carpeta 'public' con este nombre exacto
+        url: '/link-preview.png', 
         width: 1200,
         height: 630,
-        alt: 'KromaGrid - Agencia de Desarrollo Web',
+        alt: 'KromaGrid Premium Design',
       },
     ],
     locale: 'es_MX',
     type: 'website',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'KromaGrid | Talento Emergente en Código y Diseño',
-    description: 'Creamos páginas de ventas, sitios corporativos y tiendas en línea diseñadas para escalar.',
-    images: ['/link-preview.png'],
-  },
 };
 
 export default function Home() {
   return (
-    <main className="flex flex-col w-full min-h-screen bg-zinc-950 text-zinc-50 relative selection:bg-emerald-500/30 selection:text-emerald-200">
-      
-      {/* Fondo Premium: Gradiente radial sutil que le da profundidad a toda la página */}
-      <div className="fixed inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900/40 via-zinc-950 to-zinc-950" />
+    // Reemplazamos los fondos zinc por nuestra paleta luxury (kg-cream y kg-charcoal)
+    <main className="flex flex-col w-full min-h-screen bg-kg-cream text-kg-charcoal dark:bg-kg-charcoal dark:text-kg-cream transition-colors duration-500">
       
       <div className="relative z-10 flex flex-col w-full">
         {/* 1. El Gancho */}
@@ -55,34 +48,32 @@ export default function Home() {
         <CalendarEmbed />
       </div>
 
-      {/* 6. Footer Premium Mejorado */}
-      <footer className="w-full border-t border-zinc-900 bg-zinc-950 relative z-20 overflow-hidden mt-12">
-        {/* Línea decorativa superior con gradiente */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
+      {/* 6. Footer Editorial Premium */}
+      <footer className="w-full border-t border-kg-charcoal/10 dark:border-kg-cream/10 relative z-20 mt-12 bg-kg-cream dark:bg-kg-charcoal transition-colors duration-500">
         
-        <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col items-center md:items-start">
-            <span className="text-2xl font-bold tracking-tighter text-zinc-100 mb-1">
-              Kroma<span className="text-emerald-500">Grid</span>
+        <div className="max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <span className="text-3xl font-serif font-medium tracking-tight text-kg-charcoal dark:text-kg-cream mb-2">
+              Kroma<span className="text-kg-gold italic">Grid.</span>
             </span>
-            <p className="text-zinc-500 text-sm">
-              Talento emergente. Resultados de clase mundial.
+            <p className="text-kg-muted text-sm font-light max-w-xs">
+              Diseño digital de alto perfil para especialistas que exigen excelencia.
             </p>
           </div>
           
-          <div className="flex items-center gap-8">
-            <a href="https://wa.me/525520138173" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-zinc-400 hover:text-emerald-400 transition-colors">
-              WhatsApp
+          <div className="flex items-center gap-10">
+            <a href="https://wa.me/525520138173" target="_blank" rel="noopener noreferrer" className="text-sm font-medium tracking-widest uppercase text-kg-charcoal dark:text-kg-cream hover:text-kg-gold dark:hover:text-kg-gold transition-colors duration-300">
+              Contacto
             </a>
-            <a href="#" className="text-sm font-medium text-zinc-400 hover:text-emerald-400 transition-colors">
+            <a href="#" className="text-sm font-medium tracking-widest uppercase text-kg-charcoal dark:text-kg-cream hover:text-kg-gold dark:hover:text-kg-gold transition-colors duration-300">
               Instagram
             </a>
           </div>
         </div>
         
-        <div className="w-full border-t border-zinc-900/50 py-6 text-center bg-zinc-950/50">
-          <p className="text-zinc-600 text-xs font-mono tracking-wider uppercase">
-            © {new Date().getFullYear()} KromaGrid. Diseñado para escalar.
+        <div className="w-full border-t border-kg-charcoal/5 dark:border-kg-cream/5 py-8 text-center">
+          <p className="text-kg-muted text-xs font-light tracking-[0.2em] uppercase">
+            © {new Date().getFullYear()} KromaGrid. Elevando estándares.
           </p>
         </div>
       </footer>

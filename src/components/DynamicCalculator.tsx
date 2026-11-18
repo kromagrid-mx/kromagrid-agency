@@ -1,25 +1,25 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Smartphone, Monitor, ShoppingCart, 
-  LayoutTemplate, Sparkles, ShieldCheck, 
+  LayoutTemplate, Diamond, ShieldCheck, 
   CheckCircle2, ArrowRight, Calculator, MessageCircle
 } from 'lucide-react';
 
 const TYPE_OPTIONS = [
-  { id: 'landing', title: 'Página de Ventas (Landing)', desc: 'Una sola página directa al grano. Ideal para captar clientes en WhatsApp.', price: 3800, icon: Smartphone },
-  { id: 'corporate', title: 'Sitio Web Completo', desc: 'Varias secciones (Inicio, Servicios, Nosotros). Ideal para generar confianza.', price: 7500, icon: Monitor },
-  { id: 'ecommerce', title: 'Tienda en Línea', desc: 'Catálogo de productos, carrito de compras y pagos en línea.', price: 14500, icon: ShoppingCart },
+  { id: 'landing', title: 'Presencia Esencial (Landing)', desc: 'Una página directa y persuasiva. Ideal para captar pacientes de un tratamiento específico.', price: 3800, icon: Smartphone },
+  { id: 'corporate', title: 'Clínica Digital (Sitio Completo)', desc: 'Múltiples secciones (Especialistas, Instalaciones, Servicios). Proyecta máxima autoridad.', price: 7500, icon: Monitor },
+  { id: 'ecommerce', title: 'Plataforma Premium', desc: 'Ideal para venta de productos dentales o cobro de consultas/procedimientos en línea.', price: 14500, icon: ShoppingCart },
 ];
 
 const DESIGN_OPTIONS = [
-  { id: 'components', title: 'Diseño Estándar', desc: 'Estructura rápida, limpia y económica. Perfecta para empezar ya.', multiplier: 1, label: 'Incluido', icon: LayoutTemplate },
-  { id: 'custom', title: 'Diseño 100% a Medida', desc: 'Creado desde cero y a tu gusto para destacar por encima de tu competencia.', multiplier: 1.4, label: '+40% al total', icon: Sparkles },
+  { id: 'components', title: 'Diseño Editorial Base', desc: 'Estructura elegante, limpia y optimizada. Lista para lanzar tu presencia.', multiplier: 1, label: 'Incluido', icon: LayoutTemplate },
+  { id: 'custom', title: 'Boutique a Medida', desc: 'Dirección de arte exclusiva. Diseñado desde cero para ser la referencia en tu sector.', multiplier: 1.4, label: '+40% al total', icon: Diamond },
 ];
 
-// Componente para animar los números de forma fluida
+// Componente para animar los números de forma fluida y elegante
 const AnimatedNumber = ({ value }: { value: number }) => {
   return (
     <motion.span
@@ -62,21 +62,21 @@ export default function DynamicCalculator() {
         return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 }).format(amount);
       };
 
-      const message = `¡Hola KromaGrid! Vengo de su página web y quiero cotizar mi proyecto. 🚀
+      const message = `¡Hola KromaGrid! Vengo de su página web y me gustaría evaluar mi proyecto digital. 🥂
 
 *Mis Datos:*
-👤 Nombre: ${name}
+👤 Nombre/Clínica: ${name}
 ✉️ Correo: ${email}
 
-*Detalles de lo que necesito:*
-🛠️ Tipo: ${selectedType.title} (${formatMoney(selectedType.price)})
-✨ Diseño: ${selectedDesign.title} ${designExtra > 0 ? `(+${formatMoney(designExtra)})` : ''}
-🛡️ Mantenimiento: ${wantsMaintenance ? 'Sí (+ $600 MXN/mes)' : 'No por ahora'}
+*Selección de Concierge:*
+🛠️ Estructura: ${selectedType.title} (${formatMoney(selectedType.price)})
+✨ Arte: ${selectedDesign.title} ${designExtra > 0 ? `(+${formatMoney(designExtra)})` : ''}
+🛡️ Concierge: ${wantsMaintenance ? 'Sí (+ $600 MXN/mes)' : 'No por ahora'}
 
 *Inversión estimada:*
 💰 ${formatMoney(minPrice)} a ${formatMoney(maxPrice)} MXN
 
-¿Podemos platicar para afinar los detalles?`;
+Me gustaría agendar una breve llamada para afinar detalles.`;
 
       const encodedMessage = encodeURIComponent(message);
       const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
@@ -96,21 +96,20 @@ export default function DynamicCalculator() {
   };
 
   return (
-    <section id="cotizador" className="w-full py-32 px-6 relative z-10 bg-zinc-950 overflow-hidden">
-      <div className="absolute top-1/2 left-0 w-[30vw] h-[30vw] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
-
+    <section id="cotizador" className="w-full py-32 px-6 relative z-10">
+      
       <div className="max-w-7xl mx-auto">
         
-        {/* Cabecera */}
-        <div className="text-center mb-20">
+        {/* Cabecera Editorial */}
+        <div className="text-center mb-24">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 mb-6 backdrop-blur-sm shadow-xl shadow-emerald-500/5"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-kg-gold/30 bg-kg-gold/5 mb-8 backdrop-blur-sm"
           >
-            <Calculator className="w-4 h-4 text-emerald-400" />
-            <span className="text-xs font-medium tracking-widest text-zinc-300 uppercase">Cotizador Interactivo</span>
+            <Calculator className="w-3.5 h-3.5 text-kg-gold" />
+            <span className="text-xs font-medium tracking-[0.2em] text-kg-gold uppercase">Evaluación de Proyecto</span>
           </motion.div>
           
           <motion.h2 
@@ -118,12 +117,9 @@ export default function DynamicCalculator() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-bold text-zinc-100 mb-6 tracking-tight"
+            className="text-4xl md:text-5xl font-serif font-medium text-kg-charcoal dark:text-kg-cream mb-6 tracking-tight"
           >
-            Transparencia absoluta. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500">
-              Calcula tu inversión.
-            </span>
+            Transparencia desde el <span className="italic text-kg-gold">primer paso.</span>
           </motion.h2>
           
           <motion.p 
@@ -131,22 +127,22 @@ export default function DynamicCalculator() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto"
+            className="text-kg-muted text-lg max-w-2xl mx-auto font-light"
           >
-            Selecciona lo que necesitas y descubre cuánto cuesta en tiempo real. Sin sorpresas, ni letras chiquitas.
+            Diseña la estructura de tu nueva presencia digital. Conoce la inversión estimada al instante, sin sorpresas.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           
-          {/* Panel Izquierdo: Opciones */}
-          <div className="lg:col-span-7 space-y-12">
+          {/* Panel Izquierdo: Opciones Elegantes */}
+          <div className="lg:col-span-7 space-y-16">
             
             {/* Paso 1 */}
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-emerald-400 font-mono text-sm shadow-inner shadow-emerald-500/10">1</div>
-                <h3 className="text-2xl font-semibold text-zinc-100">¿Qué quieres lograr con tu web?</h3>
+              <div className="flex items-center gap-4 mb-8">
+                <span className="text-3xl font-serif italic text-kg-gold">01.</span>
+                <h3 className="text-xl font-medium tracking-wide uppercase text-kg-charcoal dark:text-kg-cream">Estructura Digital</h3>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -158,16 +154,15 @@ export default function DynamicCalculator() {
                     <button
                       key={opt.id}
                       onClick={() => setSelectedType(opt)}
-                      className={`group relative p-6 rounded-2xl border text-left transition-all duration-300 overflow-hidden flex flex-col h-full ${
+                      className={`group relative p-6 text-left transition-all duration-500 flex flex-col h-full ${
                         isSelected
-                          ? 'border-emerald-500/50 bg-emerald-500/10 shadow-[0_0_30px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/30'
-                          : 'border-zinc-800/80 bg-zinc-900/30 hover:border-zinc-700 hover:bg-zinc-900/60'
+                          ? 'border border-kg-gold bg-kg-gold/5 shadow-sm'
+                          : 'border border-kg-charcoal/10 dark:border-kg-cream/10 hover:border-kg-gold/50 hover:bg-kg-charcoal/5 dark:hover:bg-kg-cream/5'
                       }`}
                     >
-                      {isSelected && <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent pointer-events-none" />}
-                      <Icon className={`w-8 h-8 mb-4 transition-colors ${isSelected ? 'text-emerald-400' : 'text-zinc-500 group-hover:text-zinc-300'}`} />
-                      <h4 className={`font-bold mb-2 transition-colors ${isSelected ? 'text-zinc-100' : 'text-zinc-300'}`}>{opt.title}</h4>
-                      <p className="text-sm text-zinc-500 leading-relaxed flex-grow">{opt.desc}</p>
+                      <Icon strokeWidth={1.5} className={`w-8 h-8 mb-5 transition-colors ${isSelected ? 'text-kg-gold' : 'text-kg-muted group-hover:text-kg-charcoal dark:group-hover:text-kg-cream'}`} />
+                      <h4 className={`font-serif text-lg mb-2 transition-colors ${isSelected ? 'text-kg-charcoal dark:text-kg-cream' : 'text-kg-charcoal/70 dark:text-kg-cream/70'}`}>{opt.title}</h4>
+                      <p className="text-xs text-kg-muted leading-relaxed font-light flex-grow">{opt.desc}</p>
                     </button>
                   );
                 })}
@@ -176,9 +171,9 @@ export default function DynamicCalculator() {
 
             {/* Paso 2 */}
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-emerald-400 font-mono text-sm shadow-inner shadow-emerald-500/10">2</div>
-                <h3 className="text-2xl font-semibold text-zinc-100">Nivel de diseño e impacto visual</h3>
+              <div className="flex items-center gap-4 mb-8">
+                <span className="text-3xl font-serif italic text-kg-gold">02.</span>
+                <h3 className="text-xl font-medium tracking-wide uppercase text-kg-charcoal dark:text-kg-cream">Dirección de Arte</h3>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -190,108 +185,97 @@ export default function DynamicCalculator() {
                     <button
                       key={opt.id}
                       onClick={() => setSelectedDesign(opt)}
-                      className={`group relative p-6 rounded-2xl border text-left transition-all duration-300 overflow-hidden flex flex-col h-full ${
+                      className={`group relative p-6 text-left transition-all duration-500 flex flex-col h-full ${
                         isSelected
-                          ? 'border-emerald-500/50 bg-emerald-500/10 shadow-[0_0_30px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/30'
-                          : 'border-zinc-800/80 bg-zinc-900/30 hover:border-zinc-700 hover:bg-zinc-900/60'
+                          ? 'border border-kg-gold bg-kg-gold/5 shadow-sm'
+                          : 'border border-kg-charcoal/10 dark:border-kg-cream/10 hover:border-kg-gold/50 hover:bg-kg-charcoal/5 dark:hover:bg-kg-cream/5'
                       }`}
                     >
-                      {isSelected && <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent pointer-events-none" />}
-                      <div className="flex justify-between items-start mb-4">
-                        <Icon className={`w-8 h-8 transition-colors ${isSelected ? 'text-emerald-400' : 'text-zinc-500 group-hover:text-zinc-300'}`} />
-                        <span className={`text-xs font-mono px-2 py-1 rounded-md border ${isSelected ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400' : 'border-zinc-800 bg-zinc-900 text-zinc-500'}`}>{opt.label}</span>
+                      <div className="flex justify-between items-start mb-5">
+                        <Icon strokeWidth={1.5} className={`w-8 h-8 transition-colors ${isSelected ? 'text-kg-gold' : 'text-kg-muted group-hover:text-kg-charcoal dark:group-hover:text-kg-cream'}`} />
+                        <span className={`text-[10px] tracking-widest uppercase px-3 py-1 border ${isSelected ? 'border-kg-gold/50 bg-kg-gold/10 text-kg-gold' : 'border-kg-charcoal/10 dark:border-kg-cream/10 text-kg-muted'}`}>{opt.label}</span>
                       </div>
-                      <h4 className={`font-bold mb-2 transition-colors ${isSelected ? 'text-zinc-100' : 'text-zinc-300'}`}>{opt.title}</h4>
-                      <p className="text-sm text-zinc-500 leading-relaxed flex-grow">{opt.desc}</p>
+                      <h4 className={`font-serif text-lg mb-2 transition-colors ${isSelected ? 'text-kg-charcoal dark:text-kg-cream' : 'text-kg-charcoal/70 dark:text-kg-cream/70'}`}>{opt.title}</h4>
+                      <p className="text-xs text-kg-muted leading-relaxed font-light flex-grow">{opt.desc}</p>
                     </button>
                   );
                 })}
               </div>
             </motion.div>
 
-            {/* Paso 3 (Mantenimiento) */}
+            {/* Paso 3 (Concierge) */}
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-               <div className="flex items-center gap-4 mb-6">
-                <div className="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-emerald-400 font-mono text-sm shadow-inner shadow-emerald-500/10">3</div>
-                <h3 className="text-2xl font-semibold text-zinc-100">Cuidado a largo plazo</h3>
+               <div className="flex items-center gap-4 mb-8">
+                <span className="text-3xl font-serif italic text-kg-gold">03.</span>
+                <h3 className="text-xl font-medium tracking-wide uppercase text-kg-charcoal dark:text-kg-cream">Cuidado a Largo Plazo</h3>
               </div>
-              <label className={`relative flex items-start gap-5 p-6 rounded-2xl border cursor-pointer transition-all duration-300 overflow-hidden ${wantsMaintenance ? 'border-emerald-500/50 bg-emerald-500/10 shadow-[0_0_30px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/30' : 'border-zinc-800/80 bg-zinc-900/30 hover:border-zinc-700'}`}>
-                {wantsMaintenance && <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-transparent pointer-events-none" />}
+              <label className={`relative flex items-start gap-5 p-6 border cursor-pointer transition-all duration-500 ${wantsMaintenance ? 'border-kg-gold bg-kg-gold/5 shadow-sm' : 'border-kg-charcoal/10 dark:border-kg-cream/10 hover:border-kg-gold/50'}`}>
                 <div className="pt-1 relative z-10">
                   <input
                     type="checkbox"
                     checked={wantsMaintenance}
                     onChange={(e) => setWantsMaintenance(e.target.checked)}
-                    className="w-5 h-5 rounded border-zinc-700 text-emerald-500 bg-zinc-950 focus:ring-emerald-500/50 focus:ring-offset-zinc-950 cursor-pointer transition-all"
+                    className="w-5 h-5 rounded-none border-kg-charcoal/20 text-kg-gold bg-transparent focus:ring-kg-gold/50 focus:ring-offset-kg-cream cursor-pointer transition-all"
                   />
                 </div>
                 <div className="flex-1 relative z-10">
                   <div className="flex items-center justify-between mb-1">
-                    <div className="flex items-center gap-2">
-                      <ShieldCheck className={`w-5 h-5 ${wantsMaintenance ? 'text-emerald-400' : 'text-zinc-500'}`} />
-                      <h4 className={`font-bold ${wantsMaintenance ? 'text-zinc-100' : 'text-zinc-300'}`}>Mantenimiento Proactivo</h4>
+                    <div className="flex items-center gap-3">
+                      <ShieldCheck strokeWidth={1.5} className={`w-5 h-5 ${wantsMaintenance ? 'text-kg-gold' : 'text-kg-muted'}`} />
+                      <h4 className={`font-serif text-lg ${wantsMaintenance ? 'text-kg-charcoal dark:text-kg-cream' : 'text-kg-charcoal/70 dark:text-kg-cream/70'}`}>Concierge Digital</h4>
                     </div>
-                    <span className={`text-xs font-mono px-2 py-1 rounded-md border ${wantsMaintenance ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400' : 'border-zinc-800 bg-zinc-900 text-zinc-500'}`}>+$600/mes</span>
+                    <span className={`text-[10px] tracking-widest uppercase px-3 py-1 border ${wantsMaintenance ? 'border-kg-gold/50 bg-kg-gold/10 text-kg-gold' : 'border-kg-charcoal/10 dark:border-kg-cream/10 text-kg-muted'}`}>+$600/mes</span>
                   </div>
-                  <p className="text-sm text-zinc-400 leading-relaxed mt-2">Respaldos diarios, actualizaciones de seguridad, alojamiento premium y soporte técnico. Tú solo te enfocas en vender, nosotros cuidamos que tu web nunca falle.</p>
+                  <p className="text-xs text-kg-muted leading-relaxed mt-3 font-light">Respaldos diarios, seguridad, y soporte técnico prioritario. Tú te enfocas en atender a tus pacientes, nosotros cuidamos tu prestigio digital.</p>
                 </div>
               </label>
             </motion.div>
           </div>
 
-          {/* Panel Derecho: Recibo / Resumen Flotante */}
+          {/* Panel Derecho: Ticket Concierge */}
           <div className="lg:col-span-5 relative">
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="sticky top-24 p-1 rounded-[2rem] bg-gradient-to-b from-zinc-800 to-zinc-900/50 shadow-2xl"
+              className="sticky top-24"
             >
-              <div className="absolute inset-0 bg-emerald-500/10 blur-[80px] rounded-full pointer-events-none" />
               
-              <div className="relative p-8 rounded-[1.8rem] bg-zinc-950/90 backdrop-blur-xl border border-zinc-800/50 flex flex-col">
-                <h3 className="text-sm font-medium tracking-widest text-zinc-400 uppercase mb-6 flex items-center gap-2">
-                  <Calculator className="w-4 h-4 text-emerald-500" />
-                  Tu Inversión Estimada
+              <div className="relative p-10 bg-white dark:bg-[#1A1C1F] border border-kg-charcoal/10 dark:border-kg-cream/10 shadow-2xl flex flex-col">
+                
+                <h3 className="text-[10px] font-medium tracking-[0.2em] text-kg-muted uppercase mb-8 pb-4 border-b border-kg-charcoal/10 dark:border-kg-cream/10 flex items-center gap-2">
+                  <Calculator className="w-3.5 h-3.5" />
+                  Resumen de Inversión
                 </h3>
                 
-                {/* Visualización del precio interactiva */}
-                <div className="mb-6">
-                  <div className="flex items-baseline gap-2 mb-2">
-                    <span className="text-4xl font-bold text-zinc-100 font-mono tracking-tight">
+                {/* Visualización del precio */}
+                <div className="mb-8">
+                  <div className="flex items-baseline gap-3 mb-2">
+                    <span className="text-4xl font-serif text-kg-charcoal dark:text-kg-cream tracking-tight">
                       <AnimatedNumber value={minPrice} />
                     </span>
-                    <span className="text-zinc-500 font-mono text-2xl">-</span>
-                    <span className="text-2xl font-bold text-zinc-400 font-mono tracking-tight">
+                    <span className="text-kg-muted font-light text-2xl">-</span>
+                    <span className="text-2xl font-serif text-kg-muted tracking-tight">
                       <AnimatedNumber value={maxPrice} />
                     </span>
-                    <span className="text-sm text-emerald-500 font-bold ml-1">MXN</span>
+                    <span className="text-xs text-kg-gold tracking-widest font-medium ml-1">MXN</span>
                   </div>
-                  <p className="text-xs text-zinc-500 mt-2">*Rango estimado sujeto a la complejidad final del proyecto.</p>
+                  <p className="text-[11px] text-kg-muted/70 uppercase tracking-wider mt-2">*Estimación sujeta a revisión final de alcances.</p>
                 </div>
 
-                {/* Desglose en tiempo real */}
-                <div className="bg-zinc-900/50 rounded-xl p-4 mb-8 border border-zinc-800/80 space-y-3">
+                {/* Desglose Minimalista */}
+                <div className="space-y-4 mb-10">
                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-zinc-400 flex items-center gap-2">
-                        <selectedType.icon className="w-4 h-4" />
-                        {selectedType.title}
-                      </span>
-                      <span className="text-zinc-200 font-mono"><AnimatedNumber value={selectedType.price} /></span>
+                      <span className="text-kg-muted font-light">{selectedType.title}</span>
+                      <span className="text-kg-charcoal dark:text-kg-cream"><AnimatedNumber value={selectedType.price} /></span>
                    </div>
                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-zinc-400 flex items-center gap-2">
-                        <selectedDesign.icon className="w-4 h-4" />
-                        Diseño: {selectedDesign.title}
-                      </span>
-                      <span className="text-zinc-200 font-mono">{designExtra > 0 ? '+' : ''}<AnimatedNumber value={designExtra} /></span>
+                      <span className="text-kg-muted font-light">Diseño: {selectedDesign.title}</span>
+                      <span className="text-kg-charcoal dark:text-kg-cream">{designExtra > 0 ? '+' : ''}<AnimatedNumber value={designExtra} /></span>
                    </div>
-                   <div className="h-[1px] w-full bg-zinc-800 my-2" />
+                   <div className="h-[1px] w-full bg-kg-charcoal/10 dark:bg-kg-cream/10 my-4" />
                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-zinc-400 flex items-center gap-2">
-                        <ShieldCheck className="w-4 h-4" />
-                        Mantenimiento
-                      </span>
-                      <span className="text-zinc-200 font-mono">{wantsMaintenance ? '+$600/mes' : 'No incluido'}</span>
+                      <span className="text-kg-muted font-light">Servicio Concierge</span>
+                      <span className="text-kg-charcoal dark:text-kg-cream">{wantsMaintenance ? '+$600/mes' : 'No incluido'}</span>
                    </div>
                 </div>
 
@@ -303,21 +287,21 @@ export default function DynamicCalculator() {
                       animate={{ opacity: 1, scale: 1 }}
                       className="flex flex-col items-center text-center py-4"
                     >
-                      <div className="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
-                        <CheckCircle2 className="w-8 h-8" />
+                      <div className="w-16 h-16 border border-kg-gold text-kg-gold rounded-full flex items-center justify-center mb-6">
+                        <CheckCircle2 strokeWidth={1.5} className="w-8 h-8" />
                       </div>
-                      <h4 className="text-xl font-bold text-zinc-100 mb-2">¡Redirigiendo a WhatsApp!</h4>
-                      <p className="text-sm text-zinc-400 mb-6 leading-relaxed">
-                        Si no se abrió automáticamente, presiona el botón abajo para mandarnos un mensaje y agendar nuestra llamada de 15 minutos.
+                      <h4 className="text-xl font-serif text-kg-charcoal dark:text-kg-cream mb-2">Conectando...</h4>
+                      <p className="text-sm text-kg-muted mb-8 leading-relaxed font-light">
+                        Si tu WhatsApp no se abrió de forma automática, presiona el botón para enviar tu solicitud.
                       </p>
                        <a 
-                        href={`https://wa.me/525520138173?text=${encodeURIComponent('¡Hola KromaGrid! Vengo de su página web y quiero platicar sobre mi cotización. 🚀')}`} 
+                        href={`https://wa.me/525520138173?text=${encodeURIComponent('¡Hola KromaGrid! Me gustaría agendar mi llamada de diagnóstico. 🥂')}`} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="group relative flex items-center justify-center gap-2 w-full py-4 bg-zinc-100 hover:bg-white text-zinc-950 font-bold rounded-xl transition-all duration-300"
+                        className="group flex items-center justify-center gap-2 w-full py-4 border border-kg-charcoal dark:border-kg-cream hover:bg-kg-charcoal hover:text-kg-cream dark:hover:bg-kg-cream dark:hover:text-kg-charcoal text-kg-charcoal dark:text-kg-cream text-xs tracking-widest uppercase font-medium transition-all duration-500"
                       >
-                        <MessageCircle className="w-5 h-5" />
-                        Abrir chat manualmente
+                        <MessageCircle className="w-4 h-4" />
+                        Abrir WhatsApp
                       </a>
                     </motion.div>
                   ) : (
@@ -326,44 +310,44 @@ export default function DynamicCalculator() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       onSubmit={handleSubmit} 
-                      className="flex flex-col gap-4"
+                      className="flex flex-col gap-5"
                     >
-                      <div className="space-y-3 mb-2">
+                      <div className="space-y-4 mb-2">
                         <input 
                           type="text" 
-                          placeholder="¿Cómo te llamas o cómo se llama tu empresa?" 
+                          placeholder="Tu nombre o clínica" 
                           required
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3.5 text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-medium"
+                          className="w-full bg-transparent border-b border-kg-charcoal/20 dark:border-kg-cream/20 px-0 py-3 text-kg-charcoal dark:text-kg-cream placeholder:text-kg-muted/50 focus:outline-none focus:border-kg-gold transition-colors font-light"
                         />
                         
                         <input 
                           type="email" 
-                          placeholder="tu@correo.com" 
+                          placeholder="Correo de contacto" 
                           required
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3.5 text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-medium"
+                          className="w-full bg-transparent border-b border-kg-charcoal/20 dark:border-kg-cream/20 px-0 py-3 text-kg-charcoal dark:text-kg-cream placeholder:text-kg-muted/50 focus:outline-none focus:border-kg-gold transition-colors font-light"
                         />
                       </div>
                       
                       <button 
                         type="submit" 
                         disabled={isSubmitting}
-                        className="group relative flex items-center justify-center gap-2 w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(16,185,129,0.15)] hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]"
+                        className="mt-4 group relative flex items-center justify-center gap-3 w-full py-4 bg-kg-charcoal text-kg-cream dark:bg-kg-cream dark:text-kg-charcoal text-xs tracking-widest uppercase font-medium hover:bg-kg-gold dark:hover:bg-kg-gold hover:text-white transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {isSubmitting ? (
-                          <span className="animate-pulse">Conectando...</span>
+                          <span className="animate-pulse">Procesando...</span>
                         ) : (
                           <>
-                            <MessageCircle className="w-5 h-5" />
-                            Enviar y platicar por WhatsApp
+                            Agendar Diagnóstico
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                           </>
                         )}
                       </button>
-                      <p className="text-[11px] text-zinc-500 text-center px-4">
-                        Al presionar, se abrirá tu WhatsApp para que nos mandes esta cotización directamente y podamos platicar.
+                      <p className="text-[10px] text-kg-muted/70 text-center px-4 uppercase tracking-widest mt-2">
+                        Vía WhatsApp Seguro
                       </p>
                     </motion.form>
                   )}

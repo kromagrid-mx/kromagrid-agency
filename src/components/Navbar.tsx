@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Moon, Sun } from 'lucide-react';
+import { Moon, Sun, TerminalSquare } from 'lucide-react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,7 +19,6 @@ export default function Navbar() {
 
   // Manejo básico de Dark Mode de Tailwind
   useEffect(() => {
-    // Revisar preferencia guardada o del sistema
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       setIsDarkMode(true);
       document.documentElement.classList.add('dark');
@@ -48,40 +47,44 @@ export default function Navbar() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'bg-kg-cream/80 dark:bg-kg-charcoal/80 backdrop-blur-md border-b border-kg-charcoal/5 dark:border-kg-cream/5 py-4' 
+          ? 'bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 py-4 shadow-sm' 
           : 'bg-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         
-        {/* Logo / Nombre de la Agencia */}
+        {/* Logo de la Agencia Tech */}
         <a href="#" className="group flex items-center gap-2">
-          <div className="w-2 h-2 bg-kg-gold rounded-full group-hover:scale-150 transition-transform duration-500" />
-          <span className="font-serif text-xl tracking-tight text-kg-charcoal dark:text-kg-cream">
-            Kroma<span className="italic text-kg-gold">Grid</span>
+          <TerminalSquare className="w-5 h-5 text-blue-600 dark:text-blue-500 group-hover:rotate-12 transition-transform duration-300" />
+          <span className="font-extrabold text-xl tracking-tight text-zinc-900 dark:text-white">
+            Kroma<span className="text-blue-600 dark:text-blue-500">Grid</span>
           </span>
         </a>
 
-        {/* Enlaces y Botón de Tema */}
+        {/* Enlaces Corporativos y Botón de Tema */}
         <div className="flex items-center gap-8">
-          <div className="hidden md:flex items-center gap-6 text-[10px] uppercase tracking-[0.2em] font-medium text-kg-charcoal/60 dark:text-kg-cream/60">
-            <a href="#portafolio" className="hover:text-kg-gold transition-colors">Portafolio</a>
-            <a href="#cotizador" className="hover:text-kg-gold transition-colors">Inversión</a>
+          <div className="hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.15em] text-zinc-600 dark:text-zinc-400">
+            <a href="#portafolio" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Casos de Éxito</a>
+            <a href="#cotizador" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Simulador</a>
+            {/* CTA secundario directo en el Navbar */}
+            <a href="#agendar" className="text-blue-600 dark:text-blue-500 hover:text-blue-700 dark:hover:text-blue-400 transition-colors">
+              Auditoría
+            </a>
           </div>
 
           {/* Línea divisoria */}
-          <div className="hidden md:block w-[1px] h-4 bg-kg-charcoal/20 dark:bg-kg-cream/20" />
+          <div className="hidden md:block w-[1px] h-4 bg-zinc-300 dark:bg-zinc-700" />
 
-          {/* Toggle de Dark Mode Elegante */}
+          {/* Toggle de Dark Mode Tecnológico */}
           <button
             onClick={toggleTheme}
-            className="relative flex items-center justify-center w-10 h-10 rounded-full border border-kg-charcoal/10 dark:border-kg-cream/10 hover:border-kg-gold/50 hover:bg-kg-gold/5 transition-all duration-500 text-kg-charcoal dark:text-kg-cream"
-            aria-label="Toggle Dark Mode"
+            className="relative flex items-center justify-center w-10 h-10 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 text-zinc-700 dark:text-zinc-300 group"
+            aria-label="Alternar modo oscuro"
           >
             {isDarkMode ? (
-              <Sun strokeWidth={1.5} className="w-4 h-4 text-kg-gold" />
+              <Sun strokeWidth={2} className="w-4 h-4 group-hover:text-blue-400 transition-colors" />
             ) : (
-              <Moon strokeWidth={1.5} className="w-4 h-4" />
+              <Moon strokeWidth={2} className="w-4 h-4 group-hover:text-blue-600 transition-colors" />
             )}
           </button>
           

@@ -4,32 +4,36 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Layers } from 'lucide-react';
 
+// Hemos ajustado la realidad de los proyectos, elevando su percepción con copywriting premium.
 const PROJECTS = [
   {
     id: '01',
-    title: 'NexLogistics Enterprise',
-    category: 'Plataforma SaaS & Automatización',
-    tech: ['Software a la Medida', 'Arquitectura Cloud', 'Analítica en Tiempo Real'],
+    title: 'Apex Studio',
+    category: 'Presencia Corporativa & Identidad',
+    tech: ['Diseño UI/UX', 'Desarrollo Web', 'Animaciones Fluidas'],
     link: 'https://mprz18.github.io/APEX-STUDIO/',
+    // Imagen: Arquitectura/Estudio minimalista que refleja la palabra "Studio"
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1400&auto=format&fit=crop',
     size: 'md:col-span-2',
   },
   {
     id: '02',
-    title: 'Maison Aura',
-    category: 'E-Commerce & Catálogo Interactivo',
-    tech: ['Pasarela de Pagos', 'Experiencia UI/UX', 'Alta Conversión'],
+    title: 'Boutique Óptica',
+    category: 'Retail & Catálogo Digital',
+    tech: ['Exhibición de Producto', 'Experiencia de Usuario', 'Optimización Móvil'],
     link: 'https://mprz18.github.io/Borrador-Optica/',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop',
+    // Imagen: Lentes/Gafas de sol con estética editorial y limpia
+    image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=1000&auto=format&fit=crop',
     size: 'md:col-span-1',
   },
   {
     id: '03',
-    title: 'Apex & Asociados',
-    category: 'Ecosistema Corporativo & Reservas',
-    tech: ['Ingeniería Web', 'Posicionamiento de Marca', 'Rendimiento Óptimo'],
+    title: 'Instituto Dental Sonrisa',
+    category: 'Sector Salud Premium & Captación',
+    tech: ['Arquitectura de Confianza', 'Diseño Persuasivo', 'Conversión'],
     link: 'https://mprz18.github.io/clinica-dental-sonrisa/',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop',
+    // Imagen: Clínica moderna, luminosa y que transmite higiene y estatus
+    image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1600&auto=format&fit=crop',
     size: 'md:col-span-3',
   },
 ];
@@ -94,7 +98,7 @@ export default function PortfolioGrid() {
             variants={headerItem}
             className="text-kg-muted text-base md:text-lg font-light max-w-md leading-relaxed"
           >
-            Desde plataformas SaaS y tiendas en línea hasta portales corporativos. Cada desarrollo está diseñado para seducir visualmente y multiplicar resultados.
+            Desde presencia corporativa y retail hasta plataformas del sector salud. Cada desarrollo está diseñado para seducir visualmente y multiplicar resultados.
           </motion.p>
         </motion.div>
 
@@ -116,7 +120,7 @@ export default function PortfolioGrid() {
               }}
               className={`group relative overflow-hidden bg-kg-obsidian border border-kg-ink/10 dark:border-kg-alabaster/10 hover:border-kg-champagne/60 shadow-editorial dark:shadow-editorial-dark hover:shadow-gold-glow transition-all duration-700 block ${project.size}`}
             >
-              {/* Imagen con zoom cinematográfico continuo al pasar el cursor */}
+              {/* Imagen contextual precisa con zoom cinematográfico */}
               <img
                 src={project.image}
                 alt={project.title}
@@ -140,7 +144,7 @@ export default function PortfolioGrid() {
               <div className="absolute inset-0 p-8 sm:p-10 flex flex-col justify-end z-20">
                 <div className="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-[0.16,1,0.3,1]">
                   
-                  {/* Etiquetas de Capacidades */}
+                  {/* Etiquetas Técnicas Realistas */}
                   <div className="flex flex-wrap gap-2 mb-5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-75">
                     {project.tech.map((item, idx) => (
                       <span

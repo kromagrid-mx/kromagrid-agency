@@ -18,6 +18,7 @@ const montserrat = Montserrat({
 
 // SEO y Metadatos alineados con nuestra boutique de ingeniería digital
 export const metadata: Metadata = {
+  metadataBase: new URL('https://kromagrid.netlify.app'), // Resuelve la advertencia de Next.js
   title: 'KromaGrid | Ingeniería Digital & Software a la Medida',
   description: 'Diseñamos plataformas escalables, comercio electrónico y software a la medida con la precisión de la alta costura.',
   keywords: [

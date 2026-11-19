@@ -52,7 +52,7 @@ const headerItem = {
     opacity: 1,
     y: 0,
     filter: 'blur(0px)',
-    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as const },
   },
 };
 
@@ -116,7 +116,7 @@ export default function PortfolioGrid() {
               transition={{
                 duration: 1.1,
                 delay: index * 0.15,
-                ease: [0.16, 1, 0.3, 1],
+                ease: [0.16, 1, 0.3, 1] as const,
               }}
               className={`group relative overflow-hidden bg-kg-obsidian border border-kg-ink/10 dark:border-kg-alabaster/10 hover:border-kg-champagne/60 shadow-editorial dark:shadow-editorial-dark hover:shadow-gold-glow transition-all duration-700 block ${project.size}`}
             >

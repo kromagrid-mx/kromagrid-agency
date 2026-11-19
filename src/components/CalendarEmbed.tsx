@@ -17,7 +17,7 @@ const revealItem = {
     opacity: 1,
     y: 0,
     filter: 'blur(0px)',
-    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as const },
   },
 };
 
@@ -96,7 +96,7 @@ export default function CalendarEmbed() {
             initial={{ opacity: 0, x: -35, filter: 'blur(6px)' }}
             whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] as const }}
             className="lg:col-span-4 p-10 sm:p-12 border border-kg-ink/10 dark:border-kg-alabaster/10 bg-kg-silk/80 dark:bg-kg-onyx/80 backdrop-blur-xl shadow-editorial dark:shadow-editorial-dark"
           >
             <div className="flex items-center justify-between mb-10 pb-5 border-b border-kg-ink/10 dark:border-kg-alabaster/10">
@@ -118,7 +118,7 @@ export default function CalendarEmbed() {
                     transition={{
                       duration: 0.8,
                       delay: 0.15 * index,
-                      ease: [0.16, 1, 0.3, 1],
+                      ease: [0.16, 1, 0.3, 1] as const,
                     }}
                     whileHover={{ x: 6 }}
                     className="group flex gap-5 transition-transform duration-500"
@@ -160,7 +160,7 @@ export default function CalendarEmbed() {
             initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 1.1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.1, delay: 0.15, ease: [0.16, 1, 0.3, 1] as const }}
             className="lg:col-span-8 relative p-1.5 border border-kg-ink/10 dark:border-kg-alabaster/10 hover:border-kg-champagne/40 bg-kg-silk/60 dark:bg-kg-onyx/60 backdrop-blur-xl shadow-editorial dark:shadow-editorial-dark hover:shadow-gold-glow transition-all duration-700"
           >
             {/* Esquinas decorativas en dorado champán */}
